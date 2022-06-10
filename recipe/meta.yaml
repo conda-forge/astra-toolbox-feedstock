@@ -1,4 +1,4 @@
-{% set version = "2.0.0" %}
+{% set version = "2.1.0" %}
 
 package:
   name: astra-toolbox
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/astra-toolbox/astra-toolbox/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 214361cb02b61194a443c7816b2d37a10e134c68789e7eacc931354a6e8ecc97
+  sha256: 7768863a2756887e54829725e8fe95a371c7cb0cdfa5392b2e11cfc290f54dc3
 
 build:
   number: 0
@@ -52,8 +52,7 @@ about:
     - COPYING
     - lib/licenses/rapidxml.txt
   summary: >
-    The ASTRA Toolbox is a Python toolbox of high-performance GPU primitives
-    for 2D and 3D tomography.
+    The ASTRA Toolbox is a Python toolbox of high-performance GPU primitives for 2D and 3D tomography.
 
 extra:
   recipe-maintainers:
