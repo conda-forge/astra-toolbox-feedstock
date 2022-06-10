@@ -9,7 +9,7 @@ source:
   sha256: 214361cb02b61194a443c7816b2d37a10e134c68789e7eacc931354a6e8ecc97
 
 build:
-  number: 0
+  number: 1
   # libastra is only available for these platforms presently:
   skip: true  # [not (linux64 or win64)]
 
