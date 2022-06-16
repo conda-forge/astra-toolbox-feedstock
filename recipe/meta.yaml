@@ -10,25 +10,33 @@ source:
   patches:
     - cmake.patch
 
+# The libastra ABI is the same for all CUDA versions, but different for CUDA vs
+# non-CUDA, so we build only with the latest CUDA version. We don't actually
+# need the CUDA compiler, but we need conda-forge to assign a build environment
+# with the __cuda attribute.
+
 build:
   number: 0
   skip: True  # [(not linux64) and (cuda_compiler_version != "None")]
-  string: "{{ "cuda" + cuda_compiler_version|string }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}"  # [cuda_compiler_version != "None"]
+  skip: True  # [cuda_compiler_version not in ("None", "11.2")]
+  string: "cudah{{ PKG_HASH }}_{{ PKG_BUILDNUM }}"  # [cuda_compiler_version != "None"]
   script_env:
     - ASTRA_USE_CUDA=ON   # [cuda_compiler_version != "None"]
     - ASRTA_USE_CUDA=OFF  # [cuda_compiler_version == "None"]
+  ignore_run_exports_from:
+    - {{ compiler('cuda') }}
 
 requirements:
   build:
     - {{ compiler('cxx') }}
-  host:
     - cython >=0.13
+  host:
     # libastra includes boost in its public headers
     - boost-cpp
     - libastra =={{ version }}
     - libastra =*=cuda*  # [cuda_compiler_version != "None"]
     - libastra =*=h*     # [cuda_compiler_version == "None"]
-    - numpy =1.19
+    - numpy
     - python
     - setuptools
   run:
