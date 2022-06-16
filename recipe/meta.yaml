@@ -19,7 +19,7 @@ build:
   number: 0
   skip: True  # [(not linux64) and (cuda_compiler_version != "None")]
   skip: True  # [cuda_compiler_version not in ("None", "11.2")]
-  string: "cudah{{ PKG_HASH }}_{{ PKG_BUILDNUM }}"  # [cuda_compiler_version != "None"]
+  string: "cudapy{{ py }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}"  # [cuda_compiler_version != "None"]
   script_env:
     - ASTRA_USE_CUDA=ON   # [cuda_compiler_version != "None"]
     - ASTRA_USE_CUDA=OFF  # [cuda_compiler_version == "None"]
