@@ -12,7 +12,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [win and (cuda_compiler_version != "None")]
+  skip: True  # [(not linux64) and (cuda_compiler_version != "None")]
   string: "{{ "cuda" + cuda_compiler_version|string }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}"  # [cuda_compiler_version != "None"]
   script_env:
     - ASTRA_USE_CUDA=ON   # [cuda_compiler_version != "None"]
