@@ -37,6 +37,7 @@ requirements:
     - libastra =*=cuda*  # [cuda_compiler_version != "None"]
     - libastra =*=h*     # [cuda_compiler_version == "None"]
     - numpy
+    - pip
     - python
     - setuptools
   run:
