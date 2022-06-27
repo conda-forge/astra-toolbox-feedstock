@@ -63,7 +63,8 @@ test:
     # scipy 1.1.0 packages are broken with python 2.7 and some numpy versions
     - scipy !=1.1.0  # [py==27]
   commands:
-    - python -c "import astra; astra.test()"
+    # 27 June 2022. conda-forge doesn't have reliable native ppc64le environment
+    - python -c "import astra; astra.test()"  # [not ppc64le]
 
 about:
   home: http://www.astra-toolbox.com
