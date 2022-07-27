@@ -4,9 +4,7 @@ conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-# builds on TravisCI are unreliable and often need to be restarted
 provider:
   linux_aarch64: azure
   linux_ppc64le: azure
-# ppc64le tests don't pass precision test when emulated
 test: native
