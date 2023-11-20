@@ -18,7 +18,7 @@ source:
 
 build:
   number: {{ build }}
-  skip: True  # [cuda_compiler_version not in ("None", "11.2")]
+  skip: True  # [cuda_compiler_version not in ("None", "11.8")]
   string: "cudapy{{ py }}h{{ PKG_HASH }}_{{ build + 100 }}"  # [cuda_compiler_version != "None"]
   script_env:
     - ASTRA_USE_CUDA=ON   # [cuda_compiler_version != "None"]
@@ -33,6 +33,7 @@ requirements:
     - cython                                 # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}
     - cython >=0.13
   host:
     # libastra includes boost in its public headers
