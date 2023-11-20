@@ -33,7 +33,7 @@ requirements:
     - cython                                 # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}
+    - {{ compiler('cuda') }}                 # [cuda_compiler_version != "None"]
     - cython >=0.13
   host:
     # libastra includes boost in its public headers
