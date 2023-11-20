@@ -1,13 +1,14 @@
-{% set version = "2.1.0" %}
-{% set build = 5 %}
+{% set version = "2.1.2" %}
+{% set commit = "a78e72fa77c314ad17fd3ab0926d03fd3af31471" %}
+{% set build = 0 %}
 
 package:
   name: astra-toolbox
   version: {{ version }}
 
 source:
-  url: https://github.com/astra-toolbox/astra-toolbox/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 7768863a2756887e54829725e8fe95a371c7cb0cdfa5392b2e11cfc290f54dc3
+  url: https://github.com/astra-toolbox/astra-toolbox/archive/{{ commit }}.tar.gz
+  sha256: f66e2306f6fa9a41fd81466a845a13aa7976bb92de3d50c354965227954d1d8f
   patches:
     - cmake.patch
 
@@ -18,7 +19,7 @@ source:
 
 build:
   number: {{ build }}
-  skip: True  # [cuda_compiler_version not in ("None", "11.2")]
+  skip: True  # [cuda_compiler_version not in ("None", "11.8")]
   string: "cudapy{{ py }}h{{ PKG_HASH }}_{{ build + 100 }}"  # [cuda_compiler_version != "None"]
   script_env:
     - ASTRA_USE_CUDA=ON   # [cuda_compiler_version != "None"]
@@ -33,10 +34,11 @@ requirements:
     - cython                                 # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}                 # [cuda_compiler_version != "None"]
     - cython >=0.13
   host:
     # libastra includes boost in its public headers
-    - boost-cpp
+    - libboost-headers
     - cython >=0.13
     - libastra =={{ version }}
     - libastra =*=cuda*  # [cuda_compiler_version != "None"]
