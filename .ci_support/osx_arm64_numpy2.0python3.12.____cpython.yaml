@@ -17,7 +17,9 @@ cuda_compiler_version:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '16'
+- '17'
+libboost_headers:
+- '1.84'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
@@ -33,3 +35,4 @@ target_platform:
 zip_keys:
 - - python
   - numpy
+  - channel_sources
