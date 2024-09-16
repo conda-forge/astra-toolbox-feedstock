@@ -1,6 +1,6 @@
 {% set version = "2.2.0" %}
 {% set commit = "acbb899c4888c35d80c590f6f2ce8429e34f16b5" %}
-{% set build = 0 %}
+{% set build = 1 %}
 
 package:
   name: astra-toolbox
@@ -39,7 +39,7 @@ requirements:
     - {{ stdlib('c') }}
     - cython >=0.13
   host:
-    - cuda-version {{ cuda_compiler_version}}  # [cuda_compiler_version != "None"]
+    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     # libastra includes boost in its public headers
     - libboost-headers
     - cython >=0.13
