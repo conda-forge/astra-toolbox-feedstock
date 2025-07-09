@@ -20,7 +20,6 @@ source:
 
 build:
   number: {{ build }}
-  skip: True  # [cuda_compiler_version not in ("None", "12.0")]
   string: "cudapy{{ py }}h{{ PKG_HASH }}_{{ build + 100 }}"  # [cuda_compiler_version != "None"]
   script_env:
     - ASTRA_USE_CUDA=ON   # [cuda_compiler_version != "None"]
