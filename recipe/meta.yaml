@@ -58,8 +58,7 @@ test:
     # To avoid large downloads just for testing after build phase
     - nomkl  # [not win]
   commands:
-    # 27 June 2022. conda-forge doesn't have reliable native ppc64le environment
-    - python -c "import astra; astra.test()"  # [not (ppc64le and CI=='azure')]
+    - python -c "import astra; astra.test()"
 
 about:
   home: http://www.astra-toolbox.com
