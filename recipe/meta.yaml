@@ -57,8 +57,12 @@ test:
   requires:
     # To avoid large downloads just for testing after build phase
     - nomkl  # [not win]
+    - pytest  # [cuda_compiler_version != "None" and linux64]
+  source_files:
+    - tests/python/unit  # [cuda_compiler_version != "None" and linux64]
   commands:
     - python -c "import astra; astra.test()"
+    - python -m pytest tests/python/unit  # [cuda_compiler_version != "None" and linux64]
 
 about:
   home: http://www.astra-toolbox.com
