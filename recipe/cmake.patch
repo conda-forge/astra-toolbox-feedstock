@@ -275,7 +275,7 @@ index 00000000..148adaff
 +requires = ["setuptools ~= 58.0", "wheel", "cython >= 0.13", "numpy"]
 diff --git a/python/setup.py b/python/setup.py
 new file mode 100644
-index 00000000..b30cf2c1
+index 00000000..d308b262
 --- /dev/null
 +++ b/python/setup.py
 @@ -0,0 +1,125 @@
@@ -322,7 +322,7 @@ index 00000000..b30cf2c1
 +
 +ext_modules = cythonize(
 +    module_list=os.path.join('.', 'astra', '*.pyx'),
-+    language_level=2,  # sets python features to python 2
++    language_level=3,  # sets python features to python 3
 +)
 +
 +# Add additional parameters to each Extension
