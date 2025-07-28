@@ -275,10 +275,10 @@ index 00000000..148adaff
 +requires = ["setuptools ~= 58.0", "wheel", "cython >= 0.13", "numpy"]
 diff --git a/python/setup.py b/python/setup.py
 new file mode 100644
-index 00000000..e20cc8ee
+index 00000000..b30cf2c1
 --- /dev/null
 +++ b/python/setup.py
-@@ -0,0 +1,122 @@
+@@ -0,0 +1,125 @@
 +# -----------------------------------------------------------------------
 +# Copyright: 2010-2022, imec Vision Lab, University of Antwerp
 +#            2013-2022, CWI, Amsterdam
@@ -345,6 +345,9 @@ index 00000000..e20cc8ee
 +            'Library' if platform.system() == 'Windows' else '',
 +            'lib',
 +        )
++    ]
++    m.extra_compile_args += [
++        '/std:c++17' if platform.system() == 'Windows' else '-std=c++17'
 +    ]
 +    if m.name in ('astra.utils'):
 +        m.sources.append(
