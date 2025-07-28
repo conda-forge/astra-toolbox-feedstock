@@ -275,7 +275,7 @@ index 00000000..148adaff
 +requires = ["setuptools ~= 58.0", "wheel", "cython >= 0.13", "numpy"]
 diff --git a/python/setup.py b/python/setup.py
 new file mode 100644
-index 00000000..b440afb7
+index 00000000..e20cc8ee
 --- /dev/null
 +++ b/python/setup.py
 @@ -0,0 +1,122 @@
@@ -377,7 +377,7 @@ index 00000000..b440afb7
 +                'PythonPluginAlgorithmFactory.cpp',
 +            ))
 +
-+with open('README.md', 'r') as f:
++with open('README.md', 'r', encoding='utf-8') as f:
 +    long_description = f.read()
 +
 +setup(
