@@ -14,4 +14,10 @@ github:
 provider:
   linux_aarch64: azure
   linux_ppc64le: azure
+  linux_64: github_actions
 test: native
+github_actions:
+  self_hosted: true
+  triggers:
+  - push
+  - pull_request
