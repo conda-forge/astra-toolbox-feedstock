@@ -1,6 +1,6 @@
 {% set version = "2.3.1" %}
 {% set commit = "c9402b770efcc2721e6c49dec8428542e59f7a17" %}  # https://github.com/astra-toolbox/astra-toolbox/releases/tag/v2.3.1
-{% set build = 0 %}
+{% set build = 1 %}
 
 package:
   name: astra-toolbox
