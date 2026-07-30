@@ -1,6 +1,6 @@
 {% set version = "2.5.0" %}
 {% set commit = "934920a46781142c2b8f0177007c395eae601783" %}  # https://github.com/astra-toolbox/astra-toolbox/releases/tag/v2.5.0
-{% set build = 0 %}
+{% set build = 1 %}
 
 package:
   name: astra-toolbox-split
@@ -72,6 +72,10 @@ outputs:
       script_env:
         - ASTRA_USE_CUDA=ON   # [cuda_compiler_version != "None"]
         - ASTRA_USE_CUDA=OFF  # [cuda_compiler_version == "None"]
+      # Only build Python bindings on one CUDA version (it's compatible with all CUDA versions)
+      skip: true  # [cuda_compiler_version == "12.9"]
+      # Astra doesn't support freethreading on Windows at the moment
+      skip: true  # [is_freethreading and win]
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
@@ -81,7 +85,9 @@ outputs:
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
       host:
-        - {{ pin_subpackage('libastra', exact=True) }}
+        - libastra =={{ version }}
+        - libastra * cuda*  # [cuda_compiler_version != "None"]
+        - libastra * h*     # [cuda_compiler_version == "None"]
         - cython >=3.1
         - numpy
         - pip
@@ -89,7 +95,9 @@ outputs:
         - setuptools
       run:
         # Need another pin here because run_exports doesn't work in-between subpackages
-        - {{ pin_subpackage('libastra', exact=True) }}
+        - libastra =={{ version }}
+        - libastra * cuda*  # [cuda_compiler_version != "None"]
+        - libastra * h*     # [cuda_compiler_version == "None"]
         - python
         - scipy
     test:
